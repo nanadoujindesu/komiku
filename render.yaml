@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: komiku-mirror
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: PORT
+        value: 3000
+      - key: MIRROR_DOMAIN
+        sync: false
+      - key: MIRROR_PROTOCOL
+        value: https
+      - key: ORIGIN_HOST
+        value: komiku.org
+      - key: ORIGIN_PROTOCOL
+        value: https
+      - key: IMAGE_DOMAINS
+        value: cdn.komiku.co.id,komiku.co.id,i.komiku.org,thumbnail.komiku.org,update.komikid.org,i0.wp.com,i1.wp.com,i2.wp.com,i3.wp.com
+      - key: CACHE_TTL_HTML
+        value: 300
+      - key: CACHE_TTL_ASSETS
+        value: 86400
+      - key: CACHE_TTL_IMAGES
+        value: 604800
+      - key: CACHE_MAX_ITEMS
+        value: 2000
+      - key: USE_BROWSER
+        value: false
+    healthCheckPath: /health
+    autoDeploy: true

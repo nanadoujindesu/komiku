@@ -1,0 +1,27 @@
+{
+  "name": "komiku-mirror",
+  "version": "1.0.0",
+  "description": "Full mirror proxy for komiku.org — SEO optimized, anti-Cloudflare, deployable on Railway/Render/VPS",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "axios": "^1.7.9",
+    "cheerio": "^1.0.0",
+    "compression": "^1.7.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "lru-cache": "^10.4.3",
+    "tough-cookie": "^5.1.2"
+  },
+  "optionalDependencies": {
+    "puppeteer": "^24.4.0",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
