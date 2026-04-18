@@ -111,6 +111,12 @@ app.get('/health', (_req, res) => {
   res.json({ status: 'ok', cache: cache.stats() });
 });
 
+// Cache purge (clear all cached data)
+app.get('/_purge', (_req, res) => {
+  cache.clear();
+  res.json({ status: 'ok', message: 'Cache cleared' });
+});
+
 // Robots.txt
 app.get('/robots.txt', async (_req, res) => {
   try {
