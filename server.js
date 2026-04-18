@@ -134,8 +134,8 @@ app.get('/robots.txt', async (_req, res) => {
   }
 });
 
-// Sitemaps
-app.get(/^\/sitemap.*\.xml$/, async (req, res) => {
+// Sitemaps (matches /sitemap.xml, /sitemap-*.xml, /wp-sitemap-*.xml, /wp-sitemap-index.xsl, etc.)
+app.get(/^\/(?:wp-)?sitemap[^/]*\.(?:xml|xsl)$/, async (req, res) => {
   try {
     const cacheKey = `sitemap:${req.path}`;
     const hit = cache.get(cacheKey);
