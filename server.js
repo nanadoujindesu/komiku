@@ -147,7 +147,9 @@ app.get(/^\/(?:wp-)?sitemap[^/]*\.(?:xml|xsl)$/, async (req, res) => {
     const hit = cache.get(cacheKey);
     if (hit) return res.type('application/xml').send(hit);
 
-    const resp = await fetcher.fetchPage(`${config.originUrl}${req.path}`);
+    // Follow redirects — origin may redirect wp-sitemap-*.xml to a different domain
+    const result = await fetcher.fetchPageFollowRedirects(`${config.originUrl}${req.path}`);
+    const resp = result.response;
     if (resp.status === 404) return res.status(404).type('text/plain').send('Sitemap not found');
 
     let body = fetcher.decodeBody(resp);
